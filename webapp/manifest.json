@@ -1,0 +1,162 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "App.ProductOrderConfirmation",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		},
+		"dataSources": {
+			"ProductConfirm": {
+				"uri": "https://linux-gi6m:8001/sap/opu/odata/sap/ZSTANDARD_SRV_01",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/ZSTANDARD_SRV_01/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "App.ProductOrderConfirmation.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "App"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "App.ProductOrderConfirmation.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "ProductConfirm",
+				"type": "sap.ui.model.odata.ODataModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "App.ProductOrderConfirmation.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false
+			},
+			"routes": [
+				{
+					"name": "RouteApp",
+					"pattern": "RouteApp",
+					"target": [
+						"TargetApp"
+					]
+				},
+				{
+					"name":"Split",
+					"pattern":"",
+					"target":[
+						"ListPOC"	
+					]
+				},
+				{
+					"name":"DetailPOC",
+					"pattern":"detailpoc({cpath})",
+					"target":[
+						"ListPOC",
+						"DetailPOC"
+					]
+				},
+				{
+					"name":"CreatePOC",
+					"pattern":"createpoc",
+					"target":[
+						"CreatePOC"	
+					]
+				}
+			],
+			"targets": {
+				"TargetApp": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewId": "App",
+					"viewName": "App"
+				},
+				"ListPOC": {
+					"viewType": "XML",
+					"viewName": "ListPOC",
+					"controlAggregation": "masterPages",
+					"viewId": "idmasterpages",
+					"parent": "Split",
+					"controlId": "mySplitApp",
+					"viewLevel" : 1
+				},
+				"DetailPOC": {
+					"viewType": "XML",
+					"viewName": "DetailPOC",
+					"controlAggregation": "detailPages",
+					"viewId": "iddetailpages",
+					"parent": "Split",
+					"controlId": "mySplitApp",
+					"viewLevel" : 1
+				},
+				"CreatePOC": {
+					"viewType": "XML",
+					"viewName": "CreatePOC"
+				},
+				"Split": {
+					"viewType": "XML",
+					"viewName": "Split"
+				}
+			}
+		}
+	}
+}

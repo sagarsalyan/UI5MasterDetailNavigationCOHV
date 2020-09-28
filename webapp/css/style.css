@@ -1,0 +1,8 @@
+/* Enter your custom styles here */
+.errorMessage{
+	background:rgba(255, 0, 0, 0.5);
+	padding:5px 10px;
+	border:1px solid red;
+	border-radius:9px;
+
+}

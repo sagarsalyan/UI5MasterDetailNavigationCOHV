@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		id="OrderHelp"
+		title="Order Number"
+		class="sapUiPopupWithPadding"
+		items="{path:'OrderNum>/results',sorter:{path:'OrderNum>Aufnr', descending:true}}"
+		liveChange="_handleOrderSearch"
+		search="_handleOrderSearch"
+		confirm="_handleOrderClose"
+		cancel="_handleOrderClose">
+		<StandardListItem
+			icon="{ProductPicUrl}"
+			iconDensityAware="false"
+			iconInset="false"
+			title="{OrderNum>Aufnr}" />
+	</SelectDialog>
+</core:FragmentDefinition>

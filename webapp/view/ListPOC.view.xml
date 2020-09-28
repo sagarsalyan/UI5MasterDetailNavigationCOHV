@@ -1,0 +1,32 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="App.ProductOrderConfirmation.controller.ListPOC" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="{i18n>poc}" id="idMasterPage">
+				<content>
+					<SearchField liveChange="onSearch" width="100%"/>
+					<PullToRefresh id="pullToRefresh" refresh="handleRefresh"/>
+					<ScrollContainer height="83%" vertical="true">
+						<List id="ConfirmList" items="{path:'ConfirmModel>/results', sorter: { path: 'ConfirmModel>Rueck', descending:true }}"
+							mode="SingleSelectMaster" selectionChange="onConfirmSelect" includeItemInSelection="true">
+							<ObjectListItem title="{ConfirmModel>Rueck}" type="Active">
+								<firstStatus></firstStatus>
+								<attributes>
+									<ObjectAttribute title="{i18n>orderno}" text="{ConfirmModel>Aufnr}"/>
+									<ObjectAttribute title="{i18n>operationno}" text="{ConfirmModel>Vornr}"/>
+								</attributes>
+							</ObjectListItem>
+						</List>
+					</ScrollContainer>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button type="Default" icon="sap-icon://filter" press="onPress"/>
+						<!--<Button type="Default" icon="sap-icon://sort" press="onSort"/>-->
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

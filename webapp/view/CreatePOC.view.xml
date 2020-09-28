@@ -1,0 +1,615 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.uxap" controllerName="App.ProductOrderConfirmation.controller.CreatePOC" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="{i18n>poc}">
+				<content>
+					<u:ObjectPageLayout id="CreateLayout" enableLazyLoading="true">
+						<u:headerTitle>
+							<u:ObjectPageHeader objectTitle="{i18n>poc}"></u:ObjectPageHeader>
+						</u:headerTitle>
+						<u:sections>
+							<u:ObjectPageSection title="my section" id="idLayoutGeneral" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>general}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formGeneral" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="1" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Label text="{i18n>order}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="order" placeholder="{i18n>order}" showValueHelp="true" valueHelpOnly="true" submit="onOrderNumberSubmit" valueHelpRequest="_handleOrderHelp">
+															<layoutData>
+																<l:GridData span="XL3 L3 M8 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>confirmation}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="confirmation" placeholder="{i18n>confirmation}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M8 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>operation}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="operation" placeholder="{i18n>operation}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="_handleOperationHelp">
+															<layoutData>
+																<l:GridData span="XL3 L3 M8 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>material}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="material" placeholder="{i18n>material}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M8 S12"/>
+															</layoutData>
+														</Input>
+														
+														<Label text="{i18n>sequence}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="sequence" placeholder="{i18n>sequence}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M8 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>suboperation}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="suboperation" placeholder="{i18n>suboperation}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M8 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>capcat}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="capcat" placeholder="{i18n>capcat}" showValueHelp="true" valueHelpRequest="_handleCapCat">
+															<layoutData>
+																<l:GridData span="XL3 L3 M8 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>split}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="split" placeholder="{i18n>split}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M8 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>wrkcntr}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="wrkcntr" placeholder="{i18n>wrkcntr}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M8 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>plant}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="plant" placeholder="{i18n>plant}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M8 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>markno}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="markno" placeholder="{i18n>markno}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>confrmtype}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<ComboBox id="confrmtype" placeholder="{i18n>confrmtype}" required="true" selectionChange="onChange" selectedKey="FC">
+															<core:Item key="X" text="Final Confirmation"/>
+															<core:Item key="" text="Partial Confirmation"/>
+															<core:Item key="1" text="Automatic Final Confirmation"/>
+															<layoutData>
+																<l:GridData span="XL3 L3 M8 S12"/>
+															</layoutData>
+														</ComboBox>
+														<Label text="{i18n>clropnres}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<CheckBox id="clropnres">
+															<layoutData>
+																<l:GridData span="XL3 L3 M8 S12"/>
+															</layoutData>
+														</CheckBox>
+													</f:content>
+												</f:SimpleForm>
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>
+							<u:ObjectPageSection title="my section" id="idLayoutLocation" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>location}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formLocation" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="1"
+													labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Label text="{i18n>location}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="location" placeholder="{i18n>location}" liveChange="onInputChange">
+															<layoutData>
+																<l:GridData span="XL3 L3 M8 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>oprname}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="oprname" placeholder="{i18n>oprname}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M8 S12"/>
+															</layoutData>
+														</Input>
+													</f:content>	
+												</f:SimpleForm>
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>	
+							<u:ObjectPageSection title="my section" id="idLayoutQuantities" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>quantities}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formQuantities" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="1"
+													labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Label text="{i18n>yeild}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="yeild" placeholder="{i18n>yeild}" submit="onYieldSubmit" liveChange="onInputChange">
+															<layoutData>
+																<l:GridData span="XL3 L2 M6 S12"/>
+															</layoutData>
+														</Input>
+														<Input id = "yunit" placeholder="Unit" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="_handleUnitHelp">
+															<layoutData>
+																<l:GridData span="XL3 L1 M2 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>scrap}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="scrap" placeholder="{i18n>scrap}" liveChange="onInputChange">
+															<layoutData>
+																<l:GridData span="XL3 L3 M6 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>rewrk}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="rewrk" placeholder="{i18n>rewrk}" liveChange="onInputChange">
+															<layoutData>
+																<l:GridData span="XL3 L3 M6 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>reasonforvar}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M4 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="reasonforvar" placeholder="{i18n>reasonforvar}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M6 S12"/>
+															</layoutData>
+														</Input>
+													</f:content>
+												</f:SimpleForm>
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>
+							<u:ObjectPageSection title="my section" id="idLayoutActivities" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>activities}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formActivities" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+													labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Label text="{i18n>activity1}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="inputactivity1" placeholder="{i18n>activity1}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input id="inputactivityunit1" placeholder="{i18n>unit}" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="_handleUnitHelp">
+															<layoutData>
+																<l:GridData span="XL3 L1 M1 S12"/>
+															</layoutData>
+														</Input>
+														<CheckBox id="chkactivity1">
+															<layoutData>
+																<l:GridData span="XL3 L4 M4 S12"/>
+															</layoutData>
+														</CheckBox>
+														
+														<Label text="{i18n>activity2}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="inputactivity2" placeholder="{i18n>activity2}" >
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input id="inputactivityunit2" placeholder="{i18n>unit}" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="_handleUnitHelp">
+															<layoutData>
+																<l:GridData span="XL3 L1 M1 S12"/>
+															</layoutData>
+														</Input>
+														<CheckBox id="chkactivity2">
+															<layoutData>
+																<l:GridData span="XL3 L4 M4 S12"/>
+															</layoutData>
+														</CheckBox>
+														
+														<Label text="{i18n>activity3}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="inputactivity3" placeholder="{i18n>activity3}" >
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input id="inputactivityunit3" placeholder="{i18n>unit}" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="_handleUnitHelp">
+															<layoutData>
+																<l:GridData span="XL3 L1 M1 S12"/>
+															</layoutData>
+														</Input>
+														<CheckBox id="chkactivity3">
+															<layoutData>
+																<l:GridData span="XL3 L4 M4 S12"/>
+															</layoutData>
+														</CheckBox>
+													
+														<Label text="{i18n>activity4}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="inputactivity4" placeholder="{i18n>activity4}" >
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input id="inputactivityunit4" placeholder="{i18n>unit}" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="_handleUnitHelp">
+															<layoutData>
+																<l:GridData span="XL3 L1 M1 S12"/>
+															</layoutData>
+														</Input>
+														<CheckBox id="chkactivity4">
+															<layoutData>
+																<l:GridData span="XL3 L4 M4 S12"/>
+															</layoutData>
+														</CheckBox>
+														
+														<Label text="{i18n>activity5}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="inputactivity5" placeholder="{i18n>activity5}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input id="inputactivityunit5" placeholder="{i18n>unit}" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="_handleUnitHelp">
+															<layoutData>
+																<l:GridData span="XL3 L1 M1 S12"/>
+															</layoutData>
+														</Input>
+														<CheckBox id="chkactivity5">
+															<layoutData>
+																<l:GridData span="XL3 L4 M4 S12"/>
+															</layoutData>
+														</CheckBox>
+														
+														<Label text="{i18n>activity6}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="inputactivity6" placeholder="{i18n>activity6}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input id="inputactivityunit6" placeholder="{i18n>unit}" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="_handleUnitHelp">
+															<layoutData>
+																<l:GridData span="XL3 L1 M1 S12"/>
+															</layoutData>
+														</Input>
+														<CheckBox id="chkactivity6">
+															<layoutData>
+																<l:GridData span="XL3 L4 M4 S12"/>
+															</layoutData>
+														</CheckBox>
+														
+													</f:content>
+												</f:SimpleForm>
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>
+							<u:ObjectPageSection title="my section" id="idLayoutPersonnel" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>personnel}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formPersonnel" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="1" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Label text="{i18n>personnelno}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M6 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="personnelno" placeholder="{i18n>personnelno}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M6 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>timeid}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M6 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="timeid" placeholder="{i18n>timeid}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M6 S12"/>
+															</layoutData>
+														</Input>
+													</f:content>
+												</f:SimpleForm>
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>
+							<u:ObjectPageSection title="my section" id="idLayoutDates" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>dates}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formDates" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="1" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Text>
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</Text>
+														<Text text="{i18n>tobconf}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</Text>
+														<Text text="{i18n>conftdate}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</Text>
+														<Text text="{i18n>planforconf}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</Text>
+														<Label text="{i18n>startexec}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</Label>
+														<DateTimePicker id="startexectbc" change="onStartDateChange">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</DateTimePicker>
+														<DateTimePicker editable="false" id="startexecctd">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</DateTimePicker>
+														<DateTimePicker editable="false" id="startexecpfc">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</DateTimePicker>
+														<Label text="{i18n>finishexec}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</Label>
+														<DateTimePicker id="finishexectbc" change="onFinishDateChange">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</DateTimePicker>
+														<DateTimePicker editable="false" id="finishexecctd">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</DateTimePicker>
+														<DateTimePicker editable="false" id="finishexecpfc">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</DateTimePicker>
+														<Label text="{i18n>forecastend}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</Label>
+														<DateTimePicker id="forecastendtbc" change="onForecastDateChange">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</DateTimePicker>
+														<DateTimePicker editable="false" id="forecastendctd">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</DateTimePicker>
+														<DateTimePicker editable="false" id="forecastendpfc">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S3"/>
+															</layoutData>
+														</DateTimePicker>
+													</f:content>
+												</f:SimpleForm>
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>
+							<u:ObjectPageSection title="my section" id="idLayoutSupplement" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>supplement}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formSupplement" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="1" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Label text="{i18n>postdate}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M6 S12"/>
+															</layoutData>
+														</Label>
+														<DatePicker id="postdate" change="onPostDateChange">
+															<layoutData>
+																<l:GridData span="XL3 L3 M6 S12"/>
+															</layoutData>
+														</DatePicker>
+														<Label text="{i18n>breaktime}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M6 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="breaktime" placeholder="{i18n>breaktime}">
+															<layoutData>
+																<l:GridData span="XL3 L2 M6 S12"/>
+															</layoutData>
+														</Input>
+														<Input id="unit" placeholder="{i18n>unit}" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="_handleUnitHelp">
+															<layoutData>
+																<l:GridData span="XL3 L1 M6 S12"/>
+															</layoutData>
+														</Input>
+													</f:content>
+												</f:SimpleForm>	
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>
+							<u:ObjectPageSection title="my section" id="idLayoutText" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>text}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formText" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="1" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Label text="{i18n>text}">
+															<layoutData>
+																<l:GridData span="XL3 L2 M6 S12"/>
+															</layoutData>
+														</Label>
+														<TextArea id="text">
+															<layoutData>
+																<l:GridData span="XL3 L10 M6 S12"/>
+															</layoutData>
+														</TextArea>
+													</f:content>
+												</f:SimpleForm>
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>
+						</u:sections>
+					</u:ObjectPageLayout>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<Text id="errorMessage" text="" class="errorMessage" visible="false"/>
+						<ToolbarSpacer/>
+						<Button type="Accept" text="{i18n>save}" press="onSave" tooltip="{i18n>save}"/>
+						<!--<Button type="Reject" text="{i18n>edit}" press="onBack" tooltip="{i18n>edit}"/>-->
+						<Button type="Reject" text="{i18n>back}" press="onBack" tooltip="{i18n>back}"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

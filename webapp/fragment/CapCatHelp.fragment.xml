@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		id="CapCatHelp"
+		title="Capacaity Category"
+		class="sapUiPopupWithPadding"
+		items="{CapCat>/results}"
+		liveChange="_handleCapCatSearch"
+		search="_handleCapCatSearch"
+		confirm="_handleCapCatClose"
+		cancel="_handleCapCatClose">
+		<StandardListItem
+			icon="{ProductPicUrl}"
+			iconDensityAware="false"
+			iconInset="false"
+			title="{CapCat>Kapar}"
+			description="{CapCat>Txt}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

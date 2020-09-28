@@ -1,0 +1,90 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog
+		id="OperationHelp"
+		
+		title="Select Operation"
+		liveChange="_handleOperationSearch"
+		search="_handleOperationSearch"
+		confirm="_handleOperationClose"
+		cancel="_handleOperationClose"
+		items="{Operation>/results}">
+		<columns>
+			<Column width="3em">
+				<header>
+					<Text text="Act"/>
+				</header>
+			</Column>
+			<Column width="2em">
+				<header>
+					<Text text="Seq"/>
+				</header>
+			</Column>
+			<Column width="6em">
+				<header>
+					<Text text="Base Quantity"/>
+				</header>
+			</Column>
+			
+			<Column width="8em">
+				<header>
+					<Text text="Operation Text"/>
+				</header>
+			</Column>
+			<Column width="5em">
+				<header>
+					<Text text="Plant"/>
+				</header>
+			</Column>
+			<Column width="7em">
+				<header>
+					<Text text="Work Center"/>
+				</header>
+			</Column>
+			<Column width="8em">
+				<header>
+					<Text text="Yield to be Conf."/>
+				</header>
+			</Column>
+			<Column width="8em">
+				<header>
+					<Text text="Scrap to be Conf."/>
+				</header>
+			</Column>
+			<Column width="8em">
+				<header>
+					<Text text="Rework Qty to be Conf."/>
+				</header>
+			</Column>
+			<Column width="6em">
+				<header>
+					<Text text="Material No."/>
+				</header>
+			</Column>
+			<Column width="2em">
+				<header>
+					<Text text="Mst"/>
+				</header>
+			</Column>
+		</columns>
+		<ColumnListItem>
+			<cells>
+				<Text text="{Operation>Vornr}" />
+				<Text text="{Operation>Vplfl}" />
+				<ObjectIdentifier title="{Operation>Bmsch}" text="{Operation>Meins}"/>
+				<Text text="{Operation>Ltxa1}" />
+				<Text text="{Operation>Werks}" />
+				<Text text="{Operation>Arbpl}" />
+				<Text text="{Operation>Xmnga}" />
+				<Text text="{Operation>Lmnga}" />
+				<Text text="{Operation>Rmnga}" />
+				<Text text="{Operation>Matnr}" />
+				<Text text="{Operation>Meilr}" />
+			</cells>
+		</ColumnListItem>
+			
+		
+	</TableSelectDialog>	
+	
+</core:FragmentDefinition>

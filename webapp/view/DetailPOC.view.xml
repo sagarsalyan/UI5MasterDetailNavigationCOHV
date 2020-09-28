@@ -1,0 +1,602 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.uxap" controllerName="App.ProductOrderConfirmation.controller.DetailPOC" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="{i18n>pocdetail}">
+				<content>
+					<u:ObjectPageLayout id="CreateLayout" enableLazyLoading="true">
+						<u:headerTitle>
+							<u:ObjectPageHeader objectTitle="{i18n>poc}"></u:ObjectPageHeader>
+						</u:headerTitle>
+						<u:headerContent>
+							<l:VerticalLayout>
+								<ObjectStatus title="{i18n>confirmno}" text="{POCModel>/Rueck}"/>
+								<ObjectStatus title="{i18n>orderno}" text="{POCModel>/Aufnr}"/>
+								<ObjectStatus title="{i18n>operationno}" text="{POCModel>/Vornr}"/>
+							</l:VerticalLayout>
+						</u:headerContent>
+						<u:sections>
+							<u:ObjectPageSection title="my section" id="idLayoutGeneral" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>general}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formGeneral" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="1" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														
+														<Label text="{i18n>material}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="material" value="{POCModel>/Wablnr}" placeholder="{i18n>material}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>operation}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="operation" value="{POCModel>/Vornr}" placeholder="{i18n>operation}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>sequence}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="sequence" value="{POCModel>/Aplfl}" placeholder="{i18n>sequence}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>suboperation}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="suboperation" value="" placeholder="{i18n>suboperation}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>capcat}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="capcat" value="" placeholder="{i18n>capcat}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>split}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="split" value="{POCModel>/Split}" placeholder="{i18n>split}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>wrkcntr}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="wrkcntr" placeholder="{i18n>wrkcntr}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>plant}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="plant" value="{POCModel>/Werks}" placeholder="{i18n>plant}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>markno}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="markno" placeholder="{i18n>markno}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>confrmtype}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<ComboBox id="confrmtype" editable="false"  selectedKey="{POCModel>/Aueru}" placeholder="{i18n>confrmtype}" required="true" selectionChange="onChange">
+															<core:Item key="X" text="Final Confirmation"/>
+															<core:Item key="" text="Partial Confirmation"/>
+															<core:Item key="1" text="Automatic Final Confirmation"/>
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</ComboBox>
+														
+														<Label text="{i18n>clropnres}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<CheckBox editable="false" selected="{POCModel>/Ausor}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</CheckBox>
+													</f:content>
+												</f:SimpleForm>
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>
+							<u:ObjectPageSection title="my section" id="idLayoutLocation" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>location}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formLocation" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="1"
+													labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Label text="{i18n>location}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="location" value="{POCModel>/loacation}" placeholder="{i18n>location}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>oprname}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="oprname" value="{POCModel>/operationame}" placeholder="{i18n>oprname}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+													</f:content>	
+												</f:SimpleForm>
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>	
+							<u:ObjectPageSection title="my section" id="idLayoutQuantities" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>quantities}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formQuantities" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="1"
+													labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Label text="{i18n>yeild}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="yeild" value="{POCModel>/Lmnga}" placeholder="{i18n>yeild}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L2 M2 S12"/>
+															</layoutData>
+														</Input>
+														<Input id="yunit" value="{POCModel>/Meinh}" placeholder="{i18n>yeild}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L1 M1 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>scrap}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="scrap" value="{POCModel>/Xmnga}" placeholder="{i18n>scrap}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>rewrk}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="rewrk" value="{POCModel>/Rmnga}" placeholder="{i18n>rewrk}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>reasonforvar}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="reasonforvar" value="{POCModel>/Grund}" placeholder="{i18n>reasonforvar}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+													</f:content>
+												</f:SimpleForm>
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>
+							<u:ObjectPageSection title="my section" id="idLayoutActivities" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>activities}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formActivities" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+													labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Label text="{i18n>activity1}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id = "activity1" value="{POCModel>/Ism01}" placeholder="{i18n>activity}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input id = "activityu1" value="{POCModel>/Ile01}" placeholder="{i18n>unit}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L1 M1 S12"/>
+															</layoutData>
+														</Input>
+														<CheckBox id="activitycheck1" selected="{POCModel>/Lek01}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L4 M4 S12"/>
+															</layoutData>
+														</CheckBox>
+														<Label text="{i18n>activity2}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id = "activity2" value="{POCModel>/Ism02}" placeholder="{i18n>activity}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input id = "activityu2" value="{POCModel>/Ile02}" placeholder="{i18n>unit}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L1 M1 S12"/>
+															</layoutData>
+														</Input>
+														<CheckBox id="activitycheck2" selected="{POCModel>/Lek02}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L4 M4 S12"/>
+															</layoutData>
+														</CheckBox>
+														<Label text="{i18n>activity3}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id = "activity3" value="{POCModel>/Ism03}" placeholder="{i18n>activity}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input id = "activityu3" value="{POCModel>/Ile03}" placeholder="{i18n>unit}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L1 M1 S12"/>
+															</layoutData>
+														</Input>
+														<CheckBox id="activitycheck3" selected="{POCModel>/Lek03}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L4 M4 S12"/>
+															</layoutData>
+														</CheckBox>
+														<Label text="{i18n>activity4}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id = "activity4" value="{POCModel>/Ism04}" placeholder="{i18n>activity}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input id = "activityu4" value="{POCModel>/Ile04}" placeholder="{i18n>unit}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L1 M1 S12"/>
+															</layoutData>
+														</Input>
+														<CheckBox id="activitycheck4" selected="{POCModel>/Lek04}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L4 M4 S12"/>
+															</layoutData>
+														</CheckBox>
+														<Label text="{i18n>activity5}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id = "activity5" value="{POCModel>/Ism05}" placeholder="{i18n>activity}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input id = "activityu5" value="{POCModel>/Ile05}" placeholder="{i18n>unit}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L1 M1 S12"/>
+															</layoutData>
+														</Input>
+														<CheckBox id="activitycheck5" selected="{POCModel>/Lek05}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L4 M4 S12"/>
+															</layoutData>
+														</CheckBox>
+														<Label text="{i18n>activity6}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id = "activity6" value="{POCModel>/Ism06}" placeholder="{i18n>activity}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input id = "activityu6" value="{POCModel>/Ile06}" placeholder="{i18n>unit}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L1 M1 S12"/>
+															</layoutData>
+														</Input>
+														<CheckBox id="activitycheck6" selected="{POCModel>/Lek06}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L4 M4 S12"/>
+															</layoutData>
+														</CheckBox>
+													</f:content>
+												</f:SimpleForm>
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>
+							<u:ObjectPageSection title="my section" id="idLayoutPersonnel" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>personnel}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formPersonnel" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="1" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Label text="{i18n>personnelno}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="personnelno" value="{POCModel>/Pernr}" placeholder="{i18n>personnelno}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Label text="{i18n>timeid}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="timeid" value="{POCModel>/Zausw}" placeholder="{i18n>timeid}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+													</f:content>
+												</f:SimpleForm>
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>
+							<u:ObjectPageSection title="my section" id="idLayoutDates" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>dates}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formDates" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="1" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Text>
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Text>
+														<Text text="{i18n>tobconf}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Text>
+														<Text text="{i18n>conftdate}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Text>
+														<Text text="{i18n>planforconf}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Text>
+														<Label text="{i18n>startexec}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input value = "{parts:[{path:'POCModel>/Isdd'},{path:'POCModel>/Isdz/ms'}],formatter:'.formatter.formatDateTime'}" editable="fasle">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input value = "{parts:[{path:'POCModel>/Isdd'},{path:'POCModel>/Isdz/ms'}],formatter:'.formatter.formatDateTime'}" editable="fasle">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input value = "{parts:[{path:'POCModel>/Isdd'},{path:'POCModel>/Isdz/ms'}],formatter:'.formatter.formatDateTime'}" editable="fasle">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														
+														
+														
+														<Label text="{i18n>finishexec}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input value = "{parts:[{path:'POCModel>/Iedd'},{path:'POCModel>/Iedz/ms'}],formatter:'.formatter.formatDateTime'}" editable="fasle">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input value = "{parts:[{path:'POCModel>/Iedd'},{path:'POCModel>/Iedz/ms'}],formatter:'.formatter.formatDateTime'}" editable="fasle">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input value = "{parts:[{path:'POCModel>/Iedd'},{path:'POCModel>/Iedz/ms'}],formatter:'.formatter.formatDateTime'}" editable="fasle">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														
+														<Label text="{i18n>forecastend}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input value = "{parts:[{path:'POCModel>/Pedd'},{path:'POCModel>/Pedz/ms'}],formatter:'.formatter.formatDateTime'}" editable="fasle">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input value = "{parts:[{path:'POCModel>/Pedd'},{path:'POCModel>/Pedz/ms'}],formatter:'.formatter.formatDateTime'}" editable="fasle">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														<Input value = "{parts:[{path:'POCModel>/Pedd'},{path:'POCModel>/Pedz/ms'}],formatter:'.formatter.formatDateTime'}" editable="fasle">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Input>
+														
+														
+													</f:content>
+												</f:SimpleForm>
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>
+							<u:ObjectPageSection title="my section" id="idLayoutSupplement" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>supplement}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formSupplement" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="1" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Label text="{i18n>postdate}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<DatePicker editable="false" dateValue="{path:'POCModel>/Budat'}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</DatePicker>
+														<Label text="{i18n>breaktime}">
+															<layoutData>
+																<l:GridData span="XL3 L3 M3 S12"/>
+															</layoutData>
+														</Label>
+														<Input id="breaktime" value = "{POCModel>/Iserh}" placeholder="{i18n>breaktime}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L2 M2 S12"/>
+															</layoutData>
+														</Input>
+														<Input id="unit" value = "{POCModel>/Zeier}" placeholder="{i18n>unit}" editable="false">
+															<layoutData>
+																<l:GridData span="XL3 L1 M1 S12"/>
+															</layoutData>
+														</Input>
+													</f:content>
+												</f:SimpleForm>	
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>
+							<u:ObjectPageSection title="my section" id="idLayoutText" class="classCreatAgreeDet">
+								<u:subSections>
+									<u:ObjectPageSubSection title="{i18n>text}" mode="Expanded">
+										<u:blocks>
+											<VBox class="sapUiSmallMargin">
+												<f:SimpleForm id="formText" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="1" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false">
+													<f:content>
+														<Label text="{i18n>text}">
+															<layoutData>
+																<l:GridData span="XL3 L2 M2 S12"/>
+															</layoutData>
+														</Label>
+														<TextArea editable="false" value="{POCModel>/Ltxa1}">
+															<layoutData>
+																<l:GridData span="XL3 L10 M10 S12"/>
+															</layoutData>
+														</TextArea>
+													</f:content>
+												</f:SimpleForm>
+											</VBox>
+										</u:blocks>
+									</u:ObjectPageSubSection>
+								</u:subSections>
+							</u:ObjectPageSection>
+						</u:sections>
+					</u:ObjectPageLayout>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button type="Accept" text="{i18n>confirmorder}" press="onCreate" tooltip="{i18n>confirmorder}"/>
+						<Button type="Emphasized" icon="sap-icon://print" press="onPrint" tooltip="Download PDF"/>
+						
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
